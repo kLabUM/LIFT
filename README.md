@@ -50,7 +50,9 @@ volume, it poses more wealth to ''purchase'' more capacity from downstream,
 that is release more water to avoid flooding locally. The wealth for upstream
 agent $i$ is computed via
 
-$P_{wealth,i} = uparam_i \times V_{up,i}$
+$$
+P_{wealth,i} = uparam_i \times V_{up,i}
+$$
 
 where $uparam_i$ is a weighting parameter describing priority toward mitigating
 local upstream flooding, $V_{up,i}$ is the normalized volume of upstream agent
@@ -58,7 +60,9 @@ $i$.
 
 The sum of wealth within each sub-market is computed via
 
-$G_{wealth} = P_{wealth} * groupM^T$
+$$
+G_{wealth} = P_{wealth} * groupM^T
+$$
 
 where $groupM$ is a binary matrix denoting the sub-market that each upstream
 agent belongs to.
@@ -67,7 +71,9 @@ Each seller/downstream agent determines the cost **(name)** it places on
 the commodity based on its current volume about the desired setpoint. The cost
 **(name)** of downstream agent $j$ is computed as
 
-$D_{cost,j} = \left( V_{down,j} - setpt_{j} \right) \times dparam_j$
+$$
+D_{cost,j} = \left( V_{down,j} - setpt_{j} \right) \times dparam_j
+$$
 
 where $V_{down,j}$ is the normalized volume of downstream agent $j$, $setpt_{j}$
 is the operator-defined normalized volumetric setpoint of agent $j$, and $dparam$
@@ -75,7 +81,9 @@ is a weighting parameter describing priority toward achieving the setpoint.
 
 The price of volumetric capacity within sub-market $j$ is computed via
 
-$p_j = \frac{G_{wealth,j} + D_{cost,j}}{n_j + 1}$
+$$
+p_j = \frac{G_{wealth,j} + D_{cost,j}}{n_j + 1}
+$$
 
 where $n_j$ is the number of buyers/upstream agents in sub-market $j$. It is
 crucial to note that this results in a pareto optimal distribution of capacity
@@ -85,20 +93,28 @@ detriment of other agents.
 The purchasing power of each upstream agent $i$ in sub-market $j$ is computed
 via
 
-$P_{power,i} = \max\left( P_{wealth,i} - p_j, 0 \right)$
+$$
+P_{power,i} = \max\left( P_{wealth,i} - p_j, 0 \right)
+$$
 
 The available volumetric capacity in sub-market $j$ is computed as
 
-$V_{available,j} = (1-V_{down,j}) \times V_{max,j}$
+$$
+V_{available,j} = (1-V_{down,j}) \times V_{max,j}
+$$
 
 where $V_{max,j}$ is the maximum possible volume at downstream agent $j$.
 
 Thus, the available flow capacity in sub-market $j$ is
 
-$Q_{available,j} = \frac{V_{available,j}}{T}$
+$$
+Q_{available,j} = \frac{V_{available,j}}{T}
+$$
 
 where $T$ is the timestep of the simulation.
 
 Finally, the flow to be released from buyer/upstream agent $i$ is computed as
 
-$Q_{qual,i} = Q_{available,j} \times P_{power,i}$
+$$
+Q_{goal,i} = Q_{available,j} \times P_{power,i}
+$$
