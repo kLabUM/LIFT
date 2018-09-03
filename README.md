@@ -14,6 +14,7 @@ of dynamic control to existing infrastructure in real-time to:
 * Maximize current storage utilization
 * Reduce combined sewer overflows
 * Equalize flow to the water resources recovery facility
+
 We aim to deliver a web-based decision support tool to be used by operators of
 the sewer network during wet-weather events. The tool is informed by control
 algorithms developed through the LIFT Challenge.
