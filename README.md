@@ -49,75 +49,96 @@ capacity which is based on its current volume normalized to its maximum volume
 capacity; thus, if a storage agent is close to using all of its available
 volume, it poses more wealth to ''purchase'' more capacity from downstream,
 that is release more water to avoid flooding locally. The wealth for upstream
-agent ![alt text](https://latex.codecogs.com/gif.latex?\inline&space;i) \\( i \\) is computed via
+agent
+![alt text](https://latex.codecogs.com/gif.latex?\inline&space;i)
+is computed via
 
 ![alt text](https://latex.codecogs.com/gif.latex?P_{wealth,i}&space;=&space;uparam_i&space;\times&space;V_{up,i})
 
-\\[ P_{wealth,i} = uparam_i \times V_{up,i} \\]
-
-where ![alt text](https://latex.codecogs.com/gif.latex?\inline&space;uparam_i) \\( uparam_i \\) is a weighting parameter describing priority toward mitigating
-local upstream flooding, ![alt text](https://latex.codecogs.com/gif.latex?\inline&space;V_{up,i}) \\( V_{up,i} \\) is the normalized volume of upstream agent
-![alt text](https://latex.codecogs.com/gif.latex?\inline&space;i) \\( i \\).
+where
+![alt text](https://latex.codecogs.com/gif.latex?\inline&space;uparam_i)
+is a weighting parameter describing priority toward mitigating
+local upstream flooding,
+![alt text](https://latex.codecogs.com/gif.latex?\inline&space;V_{up,i})
+is the normalized volume of upstream agent
+![alt text](https://latex.codecogs.com/gif.latex?\inline&space;i)
+.
 
 The sum of wealth within each sub-market is computed via
 
 ![alt text](https://latex.codecogs.com/gif.latex?G_{wealth}&space;=&space;P_{wealth}&space;*&space;groupM^T)
 
-\\[ G_{wealth} = P_{wealth} * groupM^T \\]
-
-where ![alt text](https://latex.codecogs.com/gif.latex?\inline&space;groupM) \\( groupM \\) is a binary matrix denoting the sub-market that each upstream
+where
+![alt text](https://latex.codecogs.com/gif.latex?\inline&space;groupM)
+is a binary matrix denoting the sub-market that each upstream
 agent belongs to.
 
 Each seller/downstream agent determines the cost **(name)** it places on
 the commodity based on its current volume about the desired setpoint. The cost
-**(name)** of downstream agent ![alt text](https://latex.codecogs.com/gif.latex?\inline&space;j) \\( j \\) is computed as
+**(name)** of downstream agent
+![alt text](https://latex.codecogs.com/gif.latex?\inline&space;j)
+is computed as
 
 ![alt text](https://latex.codecogs.com/gif.latex?D_{cost,j}&space;=&space;\left(&space;V_{down,j}&space;-&space;setpt_{j}&space;\right)&space;\times&space;dparam_j)
 
-\\[ D_{cost,j} = \left( V_{down,j} - setpt_{j} \right) \times dparam_j \\]
+where
+![alt text](https://latex.codecogs.com/gif.latex?\inline&space;V_{down,j})
+is the normalized volume of downstream agent
+![alt text](https://latex.codecogs.com/gif.latex?\inline&space;j)
+,
+![alt text](https://latex.codecogs.com/gif.latex?\inline&space;setpt_{j})
+is the operator-defined normalized volumetric setpoint of agent
+![alt text](https://latex.codecogs.com/gif.latex?\inline&space;j)
+, and
+![alt text](https://latex.codecogs.com/gif.latex?\inline&space;dparam)
+is a weighting parameter describing priority toward achieving the setpoint.
 
-where ![alt text](https://latex.codecogs.com/gif.latex?\inline&space;V_{down,j}) \\( V_{down,j} \\) is the normalized volume of downstream agent ![alt text](https://latex.codecogs.com/gif.latex?\inline&space;j) \\( j \\),
-![alt text](https://latex.codecogs.com/gif.latex?\inline&space;setpt_{j}) \\( setpt_{j} \\) is the operator-defined normalized volumetric setpoint of agent
-![alt text](https://latex.codecogs.com/gif.latex?\inline&space;j) \\( j \\), and ![alt text](https://latex.codecogs.com/gif.latex?\inline&space;dparam) \\( dparam \\) is a weighting parameter describing priority
-toward achieving the setpoint.
-
-The price of volumetric capacity within sub-market ![alt text](https://latex.codecogs.com/gif.latex?\inline&space;j) \\( j \\) is computed via
+The price of volumetric capacity within sub-market
+![alt text](https://latex.codecogs.com/gif.latex?\inline&space;j)
+is computed via
 
 ![alt text](https://latex.codecogs.com/gif.latex?p_j&space;=&space;\frac{G_{wealth,j}&space;&plus;&space;D_{cost,j}}{n_j&space;&plus;&space;1})
 
-\\[ p_j = \frac{G_{wealth,j} + D_{cost,j}}{n_j + 1} \\]
+where
+![alt text](https://latex.codecogs.com/gif.latex?\inline&space;n_j)
+is the number of buyers/upstream agents in sub-market
+![alt text](https://latex.codecogs.com/gif.latex?\inline&space;j)
+. It is crucial to note that this results in a pareto optimal distribution of
+capacity for each sub-market, meaning that any benefit to one agent would result
+in a detriment of other agents.
 
-where ![alt text](https://latex.codecogs.com/gif.latex?\inline&space;n_j) \\( n_j \\) is the number of buyers/upstream agents in sub-market \\( j \\).
-It is crucial to note that this results in a pareto optimal distribution of capacity
-for each sub-market, meaning that any benefit to one agent would result in a
-detriment of other agents.
-
-The purchasing power of each upstream agent ![alt text](https://latex.codecogs.com/gif.latex?\inline&space;i) \\( i \\) in sub-market ![alt text](https://latex.codecogs.com/gif.latex?\inline&space;j) \\( j \\)
+The purchasing power of each upstream agent
+![alt text](https://latex.codecogs.com/gif.latex?\inline&space;i)
+in sub-market
+![alt text](https://latex.codecogs.com/gif.latex?\inline&space;j)
 is computed via
 
 ![alt text](https://latex.codecogs.com/gif.latex?P_{power,i}&space;=&space;\max\left(&space;P_{wealth,i}&space;-&space;p_j,&space;0&space;\right))
 
-\\[ P_{power,i} = \max\left( P_{wealth,i} - p_j, 0 \right) \\]
-
-The available volumetric capacity in sub-market ![alt text](https://latex.codecogs.com/gif.latex?\inline&space;j) \\( j \\) is computed as
+The available volumetric capacity in sub-market
+![alt text](https://latex.codecogs.com/gif.latex?\inline&space;j)
+is computed as
 
 ![alt text](https://latex.codecogs.com/gif.latex?V_{available,j}&space;=&space;(1-V_{down,j})&space;\times&space;V_{max,j})
 
-\\[ V_{available,j} = (1-V_{down,j}) \times V_{max,j} \\]
+where
+![alt text](https://latex.codecogs.com/gif.latex?\inline&space;V_{max,j})
+is the maximum possible volume at downstream agent
+![alt text](https://latex.codecogs.com/gif.latex?\inline&space;j)
+.
 
-where ![alt text](https://latex.codecogs.com/gif.latex?\inline&space;V_{max,j}) \\( V_{max,j} \\) is the maximum possible volume at downstream agent ![alt text](https://latex.codecogs.com/gif.latex?\inline&space;j) \\( j \\).
-
-Thus, the available flow capacity in sub-market ![alt text](https://latex.codecogs.com/gif.latex?\inline&space;j) \\( j \\) is
+Thus, the available flow capacity in sub-market
+![alt text](https://latex.codecogs.com/gif.latex?\inline&space;j)
+is
 
 ![alt text](https://latex.codecogs.com/gif.latex?Q_{available,j}&space;=&space;\frac{V_{available,j}}{T})
 
-\\[ Q_{available,j} = \frac{V_{available,j}}{T} \\]
+where
+![alt text](https://latex.codecogs.com/gif.latex?\inline&space;T)
+is the timestep of the simulation.
 
-where ![alt text](https://latex.codecogs.com/gif.latex?\inline&space;T) \\( T \\) is the timestep of the simulation.
-
-Finally, the flow to be released from buyer/upstream agent ![alt text](https://latex.codecogs.com/gif.latex?\inline&space;i) \\( i \\) is
-computed as
+Finally, the flow to be released from buyer/upstream agent
+![alt text](https://latex.codecogs.com/gif.latex?\inline&space;i)
+is computed as
 
 ![alt text](https://latex.codecogs.com/gif.latex?Q_{goal,i}&space;=&space;Q_{available,j}&space;\times&space;P_{power,i})
-
-\\[ Q_{goal,i} = Q_{available,j} \times P_{power,i} \\]
