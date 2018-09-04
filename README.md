@@ -73,9 +73,9 @@ where
 is a binary matrix denoting the sub-market that each upstream
 agent belongs to.
 
-Each seller/downstream agent determines the cost **(name)** it places on
+Each seller/downstream agent determines the cost it places on
 the commodity based on its current volume about the desired setpoint. The cost
-**(name)** of downstream agent
+of downstream agent
 ![alt text](https://latex.codecogs.com/gif.latex?\inline&space;j)
 is computed as
 
