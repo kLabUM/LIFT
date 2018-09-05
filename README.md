@@ -15,7 +15,9 @@ of dynamic control to existing infrastructure in real-time to:
 * Reduce combined sewer overflows
 * Equalize flow to the water resources recovery facility
 
-We aim to deliver a web-based decision support tool to be used by operators of
+We aim to deliver a web-based 
+[decision support dashboard](http://data.open-storm.org:3000/dashboard/snapshot/APOGoFd9HldAIICaG7l4aGZRnKwc1rtn?orgId=1) 
+to be used by operators of
 the sewer network during wet-weather events. The tool is informed by control
 algorithms developed through the LIFT Challenge.
 
