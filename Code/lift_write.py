@@ -61,11 +61,11 @@ def outflux_1(client, outfile, control_locations):
         data = generate_data(time, series, tag)
         # write to influx!
         data = '\n'.join(data)
-        u = "glwa_daemon"
-        p = "AttackStrawPebble"
+        u = "username"
+        p = "password"
         port = 8086
-        db = "GLWA"
-        host = "data.open-storm.org"
+        db = "db"
+        host = "your_url"
         post_header = {
 	'Host': '%s:%s'%(host,port),
 	'Connection': 'close',
