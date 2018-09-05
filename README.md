@@ -18,8 +18,10 @@ of dynamic control to existing infrastructure in real-time to:
 We aim to deliver a web-based 
 [decision support dashboard](http://data.open-storm.org:3000/dashboard/snapshot/APOGoFd9HldAIICaG7l4aGZRnKwc1rtn?orgId=1) 
 to be used by operators of
-the sewer network during wet-weather events. The tool is informed by control
+the sewer network during wet-weather events (see below). The tool is informed by control
 algorithms developed through the LIFT Challenge.
+
+![Decision Support Dashboard](https://github.com/kLabUM/LIFT/blob/master/DecisionSupportDashboard.PNG)
 
 Within this repository are functions that execute the control algorithms used
 to inform the decision support tool. While we do not share the underlying
